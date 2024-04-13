@@ -61,7 +61,6 @@ func PyUnicode_GetLength(unicode *PyObject) int {
 // PyUnicode_CopyCharacters : https://docs.python.org/3/c-api/unicode.html#c.PyUnicode_CopyCharacters
 func PyUnicode_CopyCharacters(to, from *PyObject, to_start, from_start, how_many int) int {
 	return int(C.PyUnicode_CopyCharacters(toc(to), C.Py_ssize_t(to_start), toc(from), C.Py_ssize_t(from_start), C.Py_ssize_t(how_many)))
-
 }
 
 // PyUnicode_Fill : https://docs.python.org/3/c-api/unicode.html#c.PyUnicode_Fill

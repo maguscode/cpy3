@@ -45,3 +45,11 @@ func TestPyMain(t *testing.T) {
 	assert.Zero(t, pyErr)
 	assert.Nil(t, err)
 }
+
+func TestPyBytesMain(t *testing.T) {
+	Py_Initialize()
+
+	pyErr, err := Py_BytesMain([]string{"tests/test.py"})
+	assert.Zero(t, pyErr)
+	assert.Nil(t, err)
+}

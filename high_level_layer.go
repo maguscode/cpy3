@@ -8,7 +8,8 @@ Copyright 2018 Datadog, Inc.
 package python3
 
 /*
-#cgo pkg-config: python3
+#cgo pkg-config: python-3.12
+#cgo LDFLAGS: -L/usr/lib64 -lpython3.12 -ldl -lm
 #include "Python.h"
 */
 import "C"
@@ -36,6 +37,18 @@ func Py_Main(args []string) (int, error) {
 	}
 
 	return int(C.Py_Main(argc, (**C.wchar_t)(unsafe.Pointer(&argv[0])))), nil
+}
+
+func Py_BytesMain(args []string) (int, error) {
+	argc := C.int(len(args))
+	argv := make([]*C.char, argc, argc)
+	for i, arg := range args {
+		carg := C.CString(arg)
+		defer C.free(unsafe.Pointer(carg))
+		argv[i] = carg
+	}
+
+	return int(C.Py_BytesMain(argc, (**C.char)(unsafe.Pointer(&argv[0])))), nil
 }
 
 // PyRun_AnyFile : https://docs.python.org/3/c-api/veryhigh.html?highlight=pycompilerflags#c.PyRun_AnyFile

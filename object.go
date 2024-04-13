@@ -38,6 +38,16 @@ var Py_None = togo(C.Py_None)
 // PyObject : https://docs.python.org/3/c-api/structures.html?highlight=pyobject#c.PyObject
 type PyObject C.PyObject
 
+// NewRef : https://docs.python.org/3/c-api/refcounting.html#c.Py_NewRef
+func (pyObject *PyObject) NewRef() *PyObject {
+	return togo(C.Py_NewRef(toc(pyObject)))
+}
+
+// XNewRef : https://docs.python.org/3/c-api/refcounting.html#c.Py_XNewRef
+func (pyObject *PyObject) XNewRef() *PyObject {
+	return togo(C.Py_XNewRef(toc(pyObject)))
+}
+
 // IncRef : https://docs.python.org/3/c-api/refcounting.html#c.Py_INCREF
 func (pyObject *PyObject) IncRef() {
 	C.Py_IncRef(toc(pyObject))

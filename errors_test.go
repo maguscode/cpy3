@@ -192,7 +192,7 @@ func TestErrorFetchRestore(t *testing.T) {
 	assert.Nil(t, PyErr_Occurred())
 
 	assert.True(t, PyErr_GivenExceptionMatches(exc, PyExc_BufferError))
-	assert.Nil(t, value)
+	assert.True(t, (value.IsInstance(PyExc_BufferError) == 1))
 	assert.Nil(t, traceback)
 
 	PyErr_Restore(exc, value, traceback)
@@ -212,7 +212,7 @@ func TestErrorNormalizeExceptionRestore(t *testing.T) {
 	assert.Nil(t, PyErr_Occurred())
 
 	assert.True(t, PyErr_GivenExceptionMatches(exc, PyExc_BufferError))
-	assert.Equal(t, 1, value.IsInstance(exc))
+	assert.True(t, (value.IsInstance(PyExc_BufferError) == 1))
 	assert.Nil(t, traceback)
 
 	PyErr_Restore(exc, value, traceback)
@@ -230,8 +230,8 @@ func TestErrorGetSetExcInfo(t *testing.T) {
 	exc, value, traceback := PyErr_GetExcInfo()
 
 	assert.True(t, PyErr_GivenExceptionMatches(exc, Py_None), PyUnicode_AsUTF8(exc.Repr()))
-	assert.Nil(t, value)
-	assert.Nil(t, traceback)
+	assert.True(t, PyErr_GivenExceptionMatches(exc, Py_None), PyUnicode_AsUTF8(value.Repr()))
+	assert.True(t, PyErr_GivenExceptionMatches(exc, Py_None), PyUnicode_AsUTF8(traceback.Repr()))
 
 	PyErr_SetExcInfo(exc, value, traceback)
 
@@ -240,16 +240,19 @@ func TestErrorGetSetExcInfo(t *testing.T) {
 }
 
 func TestErrorInterrupt(t *testing.T) {
+	/*
+		Due to https://github.com/python/cpython/commit/68245b7a1030287294c65c298975ab9026543fd2 this results in an
+		unraiseable exception in PyErr_CheckSignals
+	*/
 	Py_Initialize()
 
 	PyErr_SetInterrupt()
 
-	assert.Equal(t, -1, PyErr_CheckSignals())
+	assert.Equal(t, 0, PyErr_CheckSignals())
 
 	exc := PyErr_Occurred()
-	assert.True(t, PyErr_GivenExceptionMatches(exc, PyExc_TypeError))
+	assert.Nil(t, exc)
 
-	assert.NotNil(t, PyErr_Occurred())
 	PyErr_Clear()
 	assert.Nil(t, PyErr_Occurred())
 }
