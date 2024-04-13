@@ -76,7 +76,7 @@ var (
 	PyExc_ZeroDivisionError      = togo(C.PyExc_ZeroDivisionError)
 )
 
-//PyErr_NewException : https://docs.python.org/3/c-api/exceptions.html#c.PyErr_NewException
+// PyErr_NewException : https://docs.python.org/3/c-api/exceptions.html#c.PyErr_NewException
 func PyErr_NewException(name string, base, dict *PyObject) *PyObject {
 	cname := C.CString(name)
 	defer C.free(unsafe.Pointer(cname))
@@ -84,7 +84,7 @@ func PyErr_NewException(name string, base, dict *PyObject) *PyObject {
 	return togo(C.PyErr_NewException(cname, toc(base), toc(dict)))
 }
 
-//PyErr_NewExceptionWithDoc : https://docs.python.org/3/c-api/exceptions.html#c.PyErr_NewExceptionWithDoc
+// PyErr_NewExceptionWithDoc : https://docs.python.org/3/c-api/exceptions.html#c.PyErr_NewExceptionWithDoc
 func PyErr_NewExceptionWithDoc(name, doc string, base, dict *PyObject) *PyObject {
 	cname := C.CString(name)
 	defer C.free(unsafe.Pointer(cname))
@@ -95,32 +95,32 @@ func PyErr_NewExceptionWithDoc(name, doc string, base, dict *PyObject) *PyObject
 	return togo(C.PyErr_NewExceptionWithDoc(cname, cdoc, toc(base), toc(dict)))
 }
 
-//PyException_GetTraceback : https://docs.python.org/3/c-api/exceptions.html#c.PyException_GetTraceback
+// PyException_GetTraceback : https://docs.python.org/3/c-api/exceptions.html#c.PyException_GetTraceback
 func PyException_GetTraceback(ex *PyObject) *PyObject {
 	return togo(C.PyException_GetTraceback(toc(ex)))
 }
 
-//PyException_SetTraceback : https://docs.python.org/3/c-api/exceptions.html#c.PyException_SetTraceback
+// PyException_SetTraceback : https://docs.python.org/3/c-api/exceptions.html#c.PyException_SetTraceback
 func PyException_SetTraceback(ex, tb *PyObject) int {
 	return int(C.PyException_SetTraceback(toc(ex), toc(tb)))
 }
 
-//PyException_GetContext : https://docs.python.org/3/c-api/exceptions.html#c.PyException_GetContext
+// PyException_GetContext : https://docs.python.org/3/c-api/exceptions.html#c.PyException_GetContext
 func PyException_GetContext(ex *PyObject) *PyObject {
 	return togo(C.PyException_GetContext(toc(ex)))
 }
 
-//PyException_SetContext : https://docs.python.org/3/c-api/exceptions.html#c.PyException_SetContext
+// PyException_SetContext : https://docs.python.org/3/c-api/exceptions.html#c.PyException_SetContext
 func PyException_SetContext(ex, ctx *PyObject) {
 	C.PyException_SetContext(toc(ex), toc(ctx))
 }
 
-//PyException_GetCause : https://docs.python.org/3/c-api/exceptions.html#c.PyException_GetCause
+// PyException_GetCause : https://docs.python.org/3/c-api/exceptions.html#c.PyException_GetCause
 func PyException_GetCause(ex *PyObject) *PyObject {
 	return togo(C.PyException_GetCause(toc(ex)))
 }
 
-//PyException_SetCause : https://docs.python.org/3/c-api/exceptions.html#c.PyException_SetCause
+// PyException_SetCause : https://docs.python.org/3/c-api/exceptions.html#c.PyException_SetCause
 func PyException_SetCause(ex, cause *PyObject) {
 	C.PyException_SetCause(toc(ex), toc(cause))
 }
