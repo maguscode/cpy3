@@ -78,3 +78,33 @@ func PyRun_SimpleString(command string) int {
 	// C.PyRun_SimpleString is a macro, using C.PyRun_SimpleStringFlags instead
 	return int(C.PyRun_SimpleStringFlags(ccommand, nil))
 }
+
+// PyRun_String : https://docs.python.org/3/c-api/veryhigh.html?highlight=pycompilerflags#c.PyRun_String
+func PyRun_String(str string, start int, globals *PyObject, locals *PyObject) *PyObject {
+	cstr := C.CString(str)
+	defer C.free(unsafe.Pointer(cstr))
+
+	return togo(C.PyRun_String(cstr, C.int(start), toc(globals), toc(locals)))
+}
+
+const (
+	Py_single_input = 256
+	Py_file_input   = 257
+	Py_eval_input   = 258
+)
+
+// Py_CompileString: https://docs.python.org/3/c-api/veryhigh.html#c.Py_CompileString
+func Py_CompileString(str string, filename string, start int) *PyObject {
+	cstr := C.CString(str)
+	defer C.free(unsafe.Pointer(cstr))
+
+	cfilename := C.CString(filename)
+	defer C.free(unsafe.Pointer(cfilename))
+
+	return togo(C.Py_CompileString(cstr, cfilename, C.int(start)))
+}
+
+// PyEval_EvalCode: https://docs.python.org/3/c-api/veryhigh.html#c.PyEval_EvalCode
+func PyEval_EvalCode(code *PyObject, globals *PyObject, locals *PyObject) *PyObject {
+	return togo(C.PyEval_EvalCode(toc(code), toc(globals), toc(locals)))
+}

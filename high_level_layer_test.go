@@ -53,3 +53,23 @@ func TestPyBytesMain(t *testing.T) {
 	assert.Zero(t, pyErr)
 	assert.Nil(t, err)
 }
+
+func TestCompileAndEvalCode(t *testing.T) {
+	Py_Initialize()
+	defer Py_Finalize()
+
+	script := "1+1"
+
+	code := Py_CompileString(script, "<string>", Py_eval_input)
+	assert.NotNil(t, code)
+	defer code.DecRef()
+
+	mainModule := PyImport_AddModule("__main__")
+	assert.NotNil(t, mainModule)
+
+	globals := PyModule_GetDict(mainModule)
+	assert.NotNil(t, globals)
+
+	result := PyLong_AsLong(PyEval_EvalCode(code, globals, nil))
+	assert.Equal(t, 2, result)
+}
