@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"os"
 
-	python3 "github.com/bluestealth/cpy3"
+	python3 "github.com/rederry/cpy3"
 )
 
 func main() {
