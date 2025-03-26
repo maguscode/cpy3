@@ -8,8 +8,7 @@ Copyright 2018 Datadog, Inc.
 package python3
 
 /*
-#cgo pkg-config: python-3.12
-#cgo LDFLAGS: -L/usr/lib64 -lpython3.12 -ldl -lm
+#cgo pkg-config: python3-embed
 #include "Python.h"
 */
 import "C"
