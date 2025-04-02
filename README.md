@@ -24,7 +24,7 @@ This project was inspired by [`sbinet/go-python`](https://github.com/sbinet/go-p
 
 We will need `pkg-config` and a working `python3.12` environment to build these
 bindings. Make sure you have Python libraries and header files installed as
-well (`python3.12-dev` on Debian or `python3-devel` on Centos for example)..
+well (`python3.12-dev` on Debian or `python3-devel` on Centos for example).
 
 By default `pkg-config` will look at the `python3` library so if you want to
 choose a specific version just symlink `python-X.Y.pc` to `python3.pc` or use
@@ -32,7 +32,7 @@ the `PKG_CONFIG_PATH` environment variable.
 
 ## Go get
 
-Then simply `go get github.com/go-python/cpy3`
+Then simply `go get github.com/rederry/cpy3`
 
 # API
 
