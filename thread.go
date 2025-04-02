@@ -38,11 +38,6 @@ func PyThreadState_Swap(tstate *PyThreadState) *PyThreadState {
 	return (*PyThreadState)(C.PyThreadState_Swap((*C.PyThreadState)(tstate)))
 }
 
-// PyEval_ReInitThreads : https://docs.python.org/3/c-api/init.html#c.PyEval_ReInitThreads
-func PyEval_ReInitThreads() {
-	C.PyOS_AfterFork_Child()
-}
-
 // PyGILState_Ensure : https://docs.python.org/3/c-api/init.html#c.PyGILState_Ensure
 func PyGILState_Ensure() PyGILState {
 	return PyGILState(C.PyGILState_Ensure())
