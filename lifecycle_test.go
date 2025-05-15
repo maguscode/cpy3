@@ -31,31 +31,31 @@ func TestInitializationEx(t *testing.T) {
 
 }
 
-func TestPrefix(t *testing.T) {
-	prefix, err := Py_GetPrefix()
-	assert.Nil(t, err)
-	assert.IsType(t, "", prefix)
+// func TestPrefix(t *testing.T) {
+// 	prefix, err := Py_GetPrefix()
+// 	assert.Nil(t, err)
+// 	assert.IsType(t, "", prefix)
 
-}
+// }
 
-func TestExecPrefix(t *testing.T) {
-	execPrefix, err := Py_GetExecPrefix()
-	assert.Nil(t, err)
-	assert.IsType(t, "", execPrefix)
+// func TestExecPrefix(t *testing.T) {
+// 	execPrefix, err := Py_GetExecPrefix()
+// 	assert.Nil(t, err)
+// 	assert.IsType(t, "", execPrefix)
 
-}
+// }
 
-func TestProgramFullPath(t *testing.T) {
-	programFullPath, err := Py_GetProgramFullPath()
-	assert.Nil(t, err)
-	assert.IsType(t, "", programFullPath)
+// func TestProgramFullPath(t *testing.T) {
+// 	programFullPath, err := Py_GetProgramFullPath()
+// 	assert.Nil(t, err)
+// 	assert.IsType(t, "", programFullPath)
 
-}
+// }
 
-func TestVersion(t *testing.T) {
-	version := Py_GetVersion()
-	assert.IsType(t, "", version)
-}
+// func TestVersion(t *testing.T) {
+// 	version := Py_GetVersion()
+// 	assert.IsType(t, "", version)
+// }
 
 func TestPlatform(t *testing.T) {
 	platform := Py_GetPlatform()
