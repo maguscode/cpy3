@@ -54,85 +54,85 @@ func Py_Finalize() {
 }
 
 // Py_GetProgramName : https://docs.python.org/3/c-api/init.html#c.Py_GetProgramName
-func Py_GetProgramName() (string, error) {
-	wcname := C.Py_GetProgramName()
-	if wcname == nil {
-		return "", nil
-	}
-	cname := C.Py_EncodeLocale(wcname, nil)
-	if cname == nil {
-		return "", fmt.Errorf("fail to call Py_EncodeLocale")
-	}
-	defer C.PyMem_Free(unsafe.Pointer(cname))
+// func Py_GetProgramName() (string, error) {
+// 	wcname := C.Py_GetProgramName()
+// 	if wcname == nil {
+// 		return "", nil
+// 	}
+// 	cname := C.Py_EncodeLocale(wcname, nil)
+// 	if cname == nil {
+// 		return "", fmt.Errorf("fail to call Py_EncodeLocale")
+// 	}
+// 	defer C.PyMem_Free(unsafe.Pointer(cname))
 
-	return C.GoString(cname), nil
-}
+// 	return C.GoString(cname), nil
+// }
 
 // Py_GetPrefix : https://docs.python.org/3/c-api/init.html#c.Py_GetPrefix
-func Py_GetPrefix() (string, error) {
-	wcname := C.Py_GetPrefix()
-	if wcname == nil {
-		return "", nil
-	}
-	cname := C.Py_EncodeLocale(wcname, nil)
-	if cname == nil {
-		return "", fmt.Errorf("fail to call Py_EncodeLocale")
-	}
-	defer C.PyMem_Free(unsafe.Pointer(cname))
+// func Py_GetPrefix() (string, error) {
+// 	wcname := C.Py_GetPrefix()
+// 	if wcname == nil {
+// 		return "", nil
+// 	}
+// 	cname := C.Py_EncodeLocale(wcname, nil)
+// 	if cname == nil {
+// 		return "", fmt.Errorf("fail to call Py_EncodeLocale")
+// 	}
+// 	defer C.PyMem_Free(unsafe.Pointer(cname))
 
-	return C.GoString(cname), nil
-}
+// 	return C.GoString(cname), nil
+// }
 
 // Py_GetExecPrefix : https://docs.python.org/3/c-api/init.html#c.Py_GetExecPrefix
-func Py_GetExecPrefix() (string, error) {
-	wcname := C.Py_GetExecPrefix()
-	if wcname == nil {
-		return "", nil
-	}
-	cname := C.Py_EncodeLocale(wcname, nil)
-	if cname == nil {
-		return "", fmt.Errorf("fail to call Py_EncodeLocale")
-	}
-	defer C.PyMem_Free(unsafe.Pointer(cname))
+// func Py_GetExecPrefix() (string, error) {
+// 	wcname := C.Py_GetExecPrefix()
+// 	if wcname == nil {
+// 		return "", nil
+// 	}
+// 	cname := C.Py_EncodeLocale(wcname, nil)
+// 	if cname == nil {
+// 		return "", fmt.Errorf("fail to call Py_EncodeLocale")
+// 	}
+// 	defer C.PyMem_Free(unsafe.Pointer(cname))
 
-	return C.GoString(cname), nil
-}
+// 	return C.GoString(cname), nil
+// }
 
 // Py_GetProgramFullPath : https://docs.python.org/3/c-api/init.html#c.Py_GetProgramFullPath
-func Py_GetProgramFullPath() (string, error) {
-	wcname := C.Py_GetProgramFullPath()
-	if wcname == nil {
-		return "", nil
-	}
-	cname := C.Py_EncodeLocale(wcname, nil)
-	if cname == nil {
-		return "", fmt.Errorf("fail to call Py_EncodeLocale")
-	}
-	defer C.PyMem_Free(unsafe.Pointer(cname))
+// func Py_GetProgramFullPath() (string, error) {
+// 	wcname := C.Py_GetProgramFullPath()
+// 	if wcname == nil {
+// 		return "", nil
+// 	}
+// 	cname := C.Py_EncodeLocale(wcname, nil)
+// 	if cname == nil {
+// 		return "", fmt.Errorf("fail to call Py_EncodeLocale")
+// 	}
+// 	defer C.PyMem_Free(unsafe.Pointer(cname))
 
-	return C.GoString(cname), nil
-}
+// 	return C.GoString(cname), nil
+// }
 
 // Py_GetPath : https://docs.python.org/3/c-api/init.html#c.Py_GetPath
-func Py_GetPath() (string, error) {
-	wcname := C.Py_GetPath()
-	if wcname == nil {
-		return "", nil
-	}
-	cname := C.Py_EncodeLocale(wcname, nil)
-	if cname == nil {
-		return "", fmt.Errorf("fail to call Py_EncodeLocale")
-	}
-	defer C.PyMem_Free(unsafe.Pointer(cname))
+// func Py_GetPath() (string, error) {
+// 	wcname := C.Py_GetPath()
+// 	if wcname == nil {
+// 		return "", nil
+// 	}
+// 	cname := C.Py_EncodeLocale(wcname, nil)
+// 	if cname == nil {
+// 		return "", fmt.Errorf("fail to call Py_EncodeLocale")
+// 	}
+// 	defer C.PyMem_Free(unsafe.Pointer(cname))
 
-	return C.GoString(cname), nil
-}
+// 	return C.GoString(cname), nil
+// }
 
 // Py_GetVersion : https://docs.python.org/3/c-api/init.html#c.Py_GetVersion
-func Py_GetVersion() string {
-	cversion := C.Py_GetVersion()
-	return C.GoString(cversion)
-}
+// func Py_GetVersion() string {
+// 	cversion := C.Py_GetVersion()
+// 	return C.GoString(cversion)
+// }
 
 // Py_GetPlatform : https://docs.python.org/3/c-api/init.html#c.Py_GetPlatform
 func Py_GetPlatform() string {
