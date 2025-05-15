@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"os"
 
-	python "github.com/rederry/cpy3"
+	python "github.com/maguscode/cpy3"
 )
 
 var (

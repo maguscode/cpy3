@@ -1,4 +1,4 @@
-module github.com/rederry/cpy3
+module github.com/maguscode/cpy3
 
 go 1.21
 
